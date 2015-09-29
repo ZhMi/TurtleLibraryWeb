@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+</head>
+
+<body>
+	<h1>This is personal center part</h1>    
+	{% if book_records %}
+  		<p>Found {{ book_records|length }} book{{ book_records|pluralize }}.</p>
+  		   <ul>
+    		{% for book_record in book_records %}
+    			id = {{book_record.id}} <br>
+    			username = {{book_record.username}} <br>
+				book_num = {{book_record.book_num}} <br>
+				borrow_start_time = {{book_record.borrow_start_time}} <br>
+				limit_day = {{book_record.limit_day}} <br>	
+				deadline_time = {{book_record.deadline_time}} <br>
+				overdueday = {{book_record.overdueday}} <br>
+				fine = {{book_record.fine}} <br>
+				renew_times = {{book_record.renew_times}} 
+
+				<form action="/renew/" method="get">
+            	<input type="hidden" name="q" value = {{book_record.id}}>
+            	<input type="submit" value="续借"/>
+          		</form>
+				<br><br>
+    		{% endfor %}
+        <a href="http://127.0.0.1:8000/BookManage/entermainpage/">return Main page </a>
+  			</ul>
+	{% else %}
+  		<p>You have not borrowed any book.</p>
+{% endif %}
+    
+
+</body>
+</html>

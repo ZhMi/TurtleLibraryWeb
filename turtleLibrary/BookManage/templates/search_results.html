@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>Search Result</title>
+</head>
+<body>
+  <p>You searched for: <strong>{{ query }}</strong></p>
+  
+	{% if books %}
+  		<p>Found {{ books|length }} book{{ books|pluralize }}.</p>
+  		   <ul>
+    		{% for book in books %}
+    			id: {{ book.id    }} <br>
+    			num: {{ book.book_num}} <br>
+    			title: {{ book.title}} <br>
+    			author: {{ book.author}} <br>
+    			publish_house: {{ book.publish_house}} <br>
+    			category: {{ book.category}} <br>   		
+          summary: {{ book.summary}} <br>
+    			total amount: {{ book.total_amount}} <br>
+          lend amount: {{book.lent_amount}} <br>
+          surplus amount: {{book.surplus_amount}} <br>
+          
+          <form action="/borrow/" method="get">
+            <input type="hidden" name="q" value = {{book.book_num}}>
+            <input type="submit" value="借阅"/>
+          </form>
+          <br><br>
+
+    		{% endfor %}
+            <a href="http://127.0.0.1:8000/BookManage/entermainpage/">return Main page </a>
+  			</ul>
+	{% else %}
+  		<p>No books matched your search criteria.</p>
+{% endif %}
+</body>
+</html>

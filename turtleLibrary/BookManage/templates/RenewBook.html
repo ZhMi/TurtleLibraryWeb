@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+</head>
+
+<body>
+	<h1> Renew book page </h1>    
+	{% if book_borrow_records %}
+      <p> renew book successfully ! </p>
+      {% for book_borrow_record in book_borrow_records %}
+  		   <ul>
+    			username = {{book_borrow_record.username}} <br>
+				  book_num = {{book_borrow_record.book_num}} <br>
+				  borrow_start_time = {{book_borrow_record.borrow_start_time}} <br>
+				  limit_day = {{book_borrow_record.limit_day}} <br>	
+				  deadline_time = {{book_borrow_record.deadline_time}} <br>
+				  overdueday = {{book_borrow_record.overdueday}} <br>
+				  fine = {{book_borrow_record.fine}} <br>
+				  renew_times = {{book_borrow_record.renew_times}} 
+				<br><br>
+  			</ul>
+      {% endfor %}
+	{% else %}
+  		<p>You have not renew any book.</p>
+{% endif %}
+    
+
+</body>
+</html>
